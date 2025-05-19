@@ -3,20 +3,18 @@ import 'package:http/http.dart' as http;
 
 class AIService {
   static Future<String> getResponse(String prompt) async {
-    const apiKey = '';
+    const apiKey = 'AIzaSyACGxJoQv_fudrQ4a1Nw8NV56dB_zH9Rw8';
 
     final response = await http.post(
-      Uri.parse('https://api-inference.huggingface.co/models/gpt2'),
+      Uri.parse("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$apiKey"),
       headers: {
         'Authorization': 'Bearer $apiKey',
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
-        "inputs": prompt,
-        "parameters": {
-          "temperature": 0.5,
-          "max_new_tokens": 500,
-        }
+        "contents": [{
+          "parts":[{"text": prompt}]
+        }]
       }),
     );
 
