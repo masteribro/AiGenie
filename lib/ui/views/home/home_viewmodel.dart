@@ -32,9 +32,8 @@ class HomeViewModel extends BaseViewModel {
     try {
       final response = await chat?.sendMessage(Content.text(message));
       final responseText = response?.text;
-
       if (responseText != null) {
-        currentTypingText = ''; // Clear before typing new one
+        currentTypingText = '';
         await typeTextSlowly(responseText);
       }
     } catch (e) {
@@ -46,8 +45,6 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-
-
   Future<void> typeTextSlowly(String text) async {
     currentTypingText = '';
     for (int i = 0; i < text.length; i++) {
@@ -57,24 +54,5 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-// void incrementCounter() {
-//   _counter++;
-//   rebuildUi();
-// }
-//
-// void showDialog() {
-//   _dialogService.showCustomDialog(
-//     variant: DialogType.infoAlert,
-//     title: 'Stacked Rocks!',
-//     description: 'Give stacked $_counter stars on Github',
-//   );
-// }
 
-// void showBottomSheet() {
-//   _bottomSheetService.showCustomSheet(
-//     variant: BottomSheetType.notice,
-//     title: ksHomeBottomSheetTitle,
-//     description: ksHomeBottomSheetDescription,
-//   );
-// }
 }
